@@ -80,7 +80,7 @@ class Profile extends StatelessWidget {
             ListTile(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const WishList(),
+                  builder: (context) => const WishlistScreen(),
                 ));
               },
               leading: const Icon(

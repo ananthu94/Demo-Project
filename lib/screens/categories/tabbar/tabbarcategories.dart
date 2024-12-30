@@ -33,7 +33,7 @@ class TabbarWidgetCategories extends StatelessWidget {
           height: MediaQuery.of(context).size.height * .66,
           width: double.infinity,
           child: const TabBarView(children: [
-            Allcategory(),
+            AllCategory(),
             ChairCategory(),
             LampCategory(),
             VaseCategory(),
