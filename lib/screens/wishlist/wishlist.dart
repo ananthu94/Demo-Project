@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ecommerce_demo/models/productmodel/productmodel.dart';
 import 'package:ecommerce_demo/statemanagement/cartProvider/cartprovider.dart';
 import 'package:ecommerce_demo/statemanagement/WishlistProvider/wishlistprovider.dart';
+import 'package:ecommerce_demo/screens/categories/categorylistmap/categorydetails.dart';
 
 class WishlistScreen extends StatelessWidget {
   const WishlistScreen({super.key});
@@ -28,6 +30,14 @@ class WishlistScreen extends StatelessWidget {
             child: ListView.builder(
               itemCount: wishlist.length,
               itemBuilder: (context, index) {
+                var productData = categoryAll[index];
+                var product = Product(
+                  title: productData['title'],
+                  description: productData['description'],
+                  price: productData['price'],
+                  color: productData['color'],
+                  imageUrl: productData['Pimages'],
+                );
                 final item = wishlist[index];
                 return Container(
                   decoration: BoxDecoration(
@@ -103,7 +113,8 @@ class WishlistScreen extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(10)),
                                 color: Colors.yellow[700],
                                 onPressed: () {
-                                  context.read<CartProvider>().addToCart(item);
+                                  Provider.of<CartModel>(context, listen: false)
+                                      .addToCart(product);
                                 },
                                 child: const Text('Add to cart'),
                               )

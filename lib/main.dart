@@ -9,8 +9,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => WishlistProvider()),
-        ChangeNotifierProvider(create: (context) => CartProvider()),
-
+        ChangeNotifierProvider(create: (context) => CartModel()),
       ],
       child: const MyApp(),
     ),

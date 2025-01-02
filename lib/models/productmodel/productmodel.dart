@@ -1,17 +1,15 @@
 class Product {
-  String title;
-  double description;
-  String price;
-  String color;
-  dynamic Pimages;
-  int quantity; // to track the quantity in the cart
+  final String title;
+  final String description;
+  final String price;
+  final String color;
+  final String imageUrl;
 
   Product({
     required this.title,
     required this.description,
     required this.price,
     required this.color,
-    required this.Pimages,
-    this.quantity = 1,
+    required this.imageUrl,
   });
 }
