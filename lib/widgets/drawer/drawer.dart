@@ -43,7 +43,7 @@ class DrawerHomepage extends StatelessWidget {
           trailing: const Icon(Icons.chevron_right_outlined),
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => const Cart(),
+              builder: (context) => const CartScreen(),
             ));
           },
         ),

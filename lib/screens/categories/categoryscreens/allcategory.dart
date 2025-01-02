@@ -4,7 +4,6 @@ import '../categorylistmap/categorydetails.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:ecommerce_demo/statemanagement/WishlistProvider/wishlistprovider.dart';
 
-
 class AllCategory extends StatelessWidget {
   const AllCategory({super.key});
 
@@ -38,6 +37,7 @@ class AllCategory extends StatelessWidget {
         shrinkWrap: true,
         itemBuilder: (BuildContext context, int index) {
           final category = categoryAll[index];
+
           // final wishlistProvider = Provider.of<WishlistProvider>(context);
           // bool isInWishlist = wishlistProvider.isInWishlist(category);
 
