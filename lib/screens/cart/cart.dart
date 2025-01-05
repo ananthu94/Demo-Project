@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../statemanagement/cartProvider/cartprovider.dart';
+import 'package:ecommerce_demo/screens/orders/ordersscreens/orderfinalpage.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -114,7 +115,9 @@ class CartScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(10)),
                           color: Colors.red[900],
                           onPressed: () {
-                            // Handle cart confirmation
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const OrderFinalPage(),
+                            ));
                           },
                           child: const Text(
                             'Confirm',

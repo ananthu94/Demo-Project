@@ -10,21 +10,6 @@ class AllCategory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Categories'),
-        // actions: [
-        //   // Navigate to wishlist when the icon is pressed
-        //   IconButton(
-        //     icon: const Icon(Icons.favorite),
-        //     onPressed: () {
-        //       Navigator.push(
-        //         context,
-        //         MaterialPageRoute(builder: (context) => const WishlistScreen()),
-        //       );
-        //     },
-        //   ),
-        // ],
-      ),
       body: GridView.builder(
         itemCount: categoryAll.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -37,9 +22,6 @@ class AllCategory extends StatelessWidget {
         shrinkWrap: true,
         itemBuilder: (BuildContext context, int index) {
           final category = categoryAll[index];
-
-          // final wishlistProvider = Provider.of<WishlistProvider>(context);
-          // bool isInWishlist = wishlistProvider.isInWishlist(category);
 
           return Container(
             color: Colors.white,
