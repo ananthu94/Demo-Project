@@ -26,7 +26,7 @@ class OrderFinalPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   const Text('Order Information'),
-                  const Text('Delivery to'),
+                  // const Text('Delivery to'),
                   const SizedBox(
                     height: 10,
                   ),
@@ -55,10 +55,13 @@ class OrderFinalPage extends StatelessWidget {
                         var item = cart.cartItems[index];
                         var product = item.key;
                         var quantity = item.value;
-                        final productPrice = product.price * quantity;
+                        // final productPrice = product.price * quantity;
 
                         return Card(
+                          shadowColor: Colors.amber,
+                          elevation: 15,
                           child: ListTile(
+                            horizontalTitleGap: 90,
                             leading: Image.network(product.imageUrl,
                                 width: 50, height: 50, fit: BoxFit.cover),
                             title: Text(product.title),
@@ -66,7 +69,7 @@ class OrderFinalPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text('${product.price} x $quantity'),
-                                Text(productPrice),
+                                // Text(productPrice),
                               ],
                             ),
                           ),
