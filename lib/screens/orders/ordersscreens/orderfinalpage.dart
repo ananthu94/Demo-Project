@@ -21,7 +21,7 @@ class OrderFinalPage extends StatelessWidget {
       body: cart.cartItems.isEmpty
           ? const Center(child: Text('No items in the cart!'))
           : Padding(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -45,6 +45,9 @@ class OrderFinalPage extends StatelessWidget {
                       ),
                     ),
                   ),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Expanded(
                     child: ListView.builder(
                       itemCount: cart.cartItems.length,
@@ -52,8 +55,8 @@ class OrderFinalPage extends StatelessWidget {
                         var item = cart.cartItems[index];
                         var product = item.key;
                         var quantity = item.value;
-                        final productPrice = (product.price * quantity);
-                        print(productPrice);
+                        final productPrice = product.price * quantity;
+
                         return Card(
                           child: ListTile(
                             leading: Image.network(product.imageUrl,
@@ -73,7 +76,7 @@ class OrderFinalPage extends StatelessWidget {
                   ),
                   const Divider(),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    padding: const EdgeInsets.symmetric(vertical: 5),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -85,7 +88,7 @@ class OrderFinalPage extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    padding: const EdgeInsets.symmetric(vertical: 5),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -96,7 +99,7 @@ class OrderFinalPage extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    padding: const EdgeInsets.symmetric(vertical: 5),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -107,7 +110,7 @@ class OrderFinalPage extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    padding: const EdgeInsets.symmetric(vertical: 5),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
