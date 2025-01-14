@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class WishlistProvider extends ChangeNotifier {
-  List<Map<String, dynamic>> _wishlist = [];
+  final List<Map<String, dynamic>> _wishlist = [];
 
   List<Map<String, dynamic>> get wishlist => _wishlist;
 

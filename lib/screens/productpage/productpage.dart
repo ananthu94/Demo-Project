@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:ecommerce_demo/widgets/bottonnavigationbar/bottomnavbar.dart';
 
 class ProductPage extends StatefulWidget {
   const ProductPage({super.key});
@@ -135,7 +134,6 @@ class _ProductPageState extends State<ProductPage> {
           ),
         ),
       ),
-      bottomNavigationBar: const BottomNavBar(),
     );
   }
 }

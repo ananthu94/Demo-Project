@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ecommerce_demo/screens/homepage/homepage.dart';
 import 'package:ecommerce_demo/screens/signup/signup_page.dart';
+import 'package:ecommerce_demo/screens/mainscreen/mainscreen.dart';
 import 'package:ecommerce_demo/screens/forgetPassword/forgetpassmain.dart';
 
 class LoginPage extends StatefulWidget {
@@ -105,7 +106,7 @@ class _LoginPageState extends State<LoginPage> {
                       minWidth: double.infinity,
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const HomePage(),
+                          builder: (context) => MainScreen(),
                         ));
                       },
                       child: const Text(

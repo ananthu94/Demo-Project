@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:ecommerce_demo/widgets/drawer/drawer.dart';
 import 'package:ecommerce_demo/screens/homepage/listforhome.dart';
 import 'package:ecommerce_demo/screens/productpage/productpage.dart';
-import 'package:ecommerce_demo/widgets/bottonnavigationbar/bottomnavbar.dart';
 
 // import 'package:flutter/material.dart';
 // import 'package:ecommerce_demo/widgets/drawer/drawer.dart';
@@ -394,7 +393,6 @@ class HomePage extends StatelessWidget {
         backgroundColor: Colors.white,
         child: DrawerHomepage(),
       ),
-      bottomNavigationBar: const BottomNavBar(),
     );
   }
 }

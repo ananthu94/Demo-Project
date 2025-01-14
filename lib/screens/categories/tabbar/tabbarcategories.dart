@@ -30,7 +30,7 @@ class TabbarWidgetCategories extends StatelessWidget {
           ),
         ]),
         SizedBox(
-          height: MediaQuery.of(context).size.height * .66,
+          height: MediaQuery.of(context).size.height * .73,
           width: double.infinity,
           child: const TabBarView(children: [
             AllCategory(),

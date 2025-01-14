@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ecommerce_demo/widgets/bottonnavigationbar/bottomnavbar.dart';
 import 'package:ecommerce_demo/screens/categories/tabbar/tabbarcategories.dart';
 
 class CatogoryPage extends StatelessWidget {
@@ -30,12 +29,11 @@ class CatogoryPage extends StatelessWidget {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10))),
                 ),
-                const TabbarWidgetCategories(),
+                SizedBox(child: TabbarWidgetCategories()),
               ],
             ),
           ),
         ),
-        bottomNavigationBar: const BottomNavBar(),
       ),
     );
   }
