@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:ecommerce_demo/screens/login/login_page.dart';
 import 'package:ecommerce_demo/screens/landing/landingpagemain.dart';
+import 'package:ecommerce_demo/screens/staylogged%20in/stayloggedin.dart';
 import 'package:ecommerce_demo/statemanagement/cartProvider/cartprovider.dart';
 import 'package:ecommerce_demo/statemanagement/WishlistProvider/wishlistprovider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  final fcmToken = await FirebaseMessaging.instance.getToken();
+  // print(fcmToken);
   runApp(
     MultiProvider(
       providers: [
@@ -39,7 +45,9 @@ class MyApp extends StatelessWidget {
           } else if (snapshot.hasData && snapshot.data == true) {
             return const LandingPage();
           } else {
-            return const LoginPage();
+            return const StayLoggedIn();
+
+            // return const LoginPage();
           }
         },
       ),

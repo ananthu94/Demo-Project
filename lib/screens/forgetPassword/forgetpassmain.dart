@@ -1,110 +1,65 @@
 import 'package:flutter/material.dart';
-import 'package:ecommerce_demo/screens/forgetPassword/forgetpassscreens/forgetpass_mail.dart';
-import 'package:ecommerce_demo/screens/forgetPassword/forgetpassscreens/forgetpass_phone.dart';
+import 'package:ecommerce_demo/screens/login/login_page.dart';
+import 'package:ecommerce_demo/firebase%20Auth/authservices.dart';
 
-class ForgetPass extends StatelessWidget {
+class ForgetPass extends StatefulWidget {
   const ForgetPass({super.key});
 
   @override
+  State<ForgetPass> createState() => _ForgetPassState();
+}
+
+class _ForgetPassState extends State<ForgetPass> {
+  final _auth = AuthService();
+  final emailController = TextEditingController();
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height * .5,
-      color: Colors.red[900],
-      padding: const EdgeInsets.all(15),
-      width: double.infinity,
-      child: Column(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Forgegt password'),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text(
-            'Reset Password!',
-            style: TextStyle(
-                fontWeight: FontWeight.bold, fontSize: 30, color: Colors.white),
-          ),
-          const Text(
-            'Select one of the options given below to reset password',
-            style: TextStyle(color: Colors.white),
-          ),
+          const Text('Enter the email id to reset password'),
           const SizedBox(
             height: 20,
           ),
-          GestureDetector(
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => const ForgetpassMail(),
-              ));
-            },
-            child: Container(
-              height: 100,
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10), color: Colors.white),
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.email_outlined,
-                    size: 60,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          'E-Mail',
-                          style: TextStyle(fontWeight: FontWeight.w900),
-                        ),
-                        Text('Reset via E-mail verification')
-                      ],
-                    ),
-                  )
-                ],
+          TextFormField(
+            controller: emailController,
+            decoration: InputDecoration(
+                fillColor: Colors.white,
+                prefixIcon: const Icon(Icons.email),
+                labelText: 'Enter Email',
+                hintText: 'Email',
+                hintStyle: const TextStyle(fontWeight: FontWeight.w300),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10))),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 100, right: 100, top: 20),
+            child: MaterialButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+              color: Colors.red[900],
+              minWidth: double.infinity,
+              onPressed: () async {
+                _auth.sendResetPasswordLink(emailController.text);
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text(
+                        'Reset password link is send to the corresponding EMAIL')));
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LoginPage(),
+                    ));
+              },
+              child: const Text(
+                'verify',
+                style: TextStyle(color: Colors.white),
               ),
             ),
           ),
-          const SizedBox(
-            height: 20,
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => const ForgetpassPhone(),
-              ));
-            },
-            child: Container(
-              height: 100,
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10), color: Colors.white),
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.phone_android_sharp,
-                    size: 60,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          'Phone',
-                          style: TextStyle(fontWeight: FontWeight.w900),
-                        ),
-                        Text('Reset via Phone verification')
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-          )
         ],
       ),
     );

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ecommerce_demo/screens/homepage/homepage.dart';
 import 'package:ecommerce_demo/screens/signup/signup_page.dart';
-import 'package:ecommerce_demo/screens/mainscreen/mainscreen.dart';
+import 'package:ecommerce_demo/firebase%20Auth/authservices.dart';
+import 'package:ecommerce_demo/screens/phoneAuthentication/phoneauth.dart';
 import 'package:ecommerce_demo/screens/forgetPassword/forgetpassmain.dart';
 
 class LoginPage extends StatefulWidget {
@@ -14,6 +15,19 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   var formkey = GlobalKey<FormState>();
   bool showpass = false;
+  final _email = TextEditingController();
+  final _password = TextEditingController();
+
+  final _auth = AuthService();
+
+  bool isLoading = false;
+
+  @override
+  void dispose() {
+    super.dispose();
+    _email.dispose();
+    _password.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +60,7 @@ class _LoginPageState extends State<LoginPage> {
                       height: 10,
                     ),
                     TextFormField(
+                      controller: _email,
                       decoration: InputDecoration(
                           fillColor: Colors.white,
                           prefixIcon: const Icon(Icons.email),
@@ -69,6 +84,7 @@ class _LoginPageState extends State<LoginPage> {
                       height: 10,
                     ),
                     TextFormField(
+                      controller: _password,
                       obscureText: !showpass,
                       decoration: InputDecoration(
                           prefixIcon: const Icon(Icons.fingerprint),
@@ -88,16 +104,28 @@ class _LoginPageState extends State<LoginPage> {
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10))),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 200),
-                      child: TextButton(
-                          onPressed: () {
-                            showModalBottomSheet(
-                              context: context,
-                              builder: (context) => const ForgetPass(),
-                            );
-                          },
-                          child: const Text('Forget Password !')),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        TextButton(
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) {
+                                  return const PhoneAuth();
+                                },
+                              ));
+                            },
+                            child: const Text('Login via Phone Number')),
+                        TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const ForgetPass(),
+                                  ));
+                            },
+                            child: const Text('Forget Password !')),
+                      ],
                     ),
                     MaterialButton(
                       shape: RoundedRectangleBorder(
@@ -105,9 +133,7 @@ class _LoginPageState extends State<LoginPage> {
                       color: Colors.red[900],
                       minWidth: double.infinity,
                       onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => MainScreen(),
-                        ));
+                        login();
                       },
                       child: const Text(
                         'Login',
@@ -115,19 +141,37 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     const Center(child: Text('OR')),
-                    OutlinedButton(
-                      onPressed: () {},
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image(
-                            image: AssetImage('assets/images/GoogleLogo.png'),
-                            width: 20,
+                    isLoading
+                        ? const Center(child: CircularProgressIndicator())
+                        : OutlinedButton(
+                            onPressed: () async {
+                              setState(() {
+                                isLoading = true;
+                              });
+                              await _auth.loginWithGoogle();
+                              setState(() {
+                                isLoading = false;
+                              });
+                            },
+                            child: const Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Row(
+                                  children: [
+                                    Image(
+                                      image: AssetImage(
+                                          'assets/images/GoogleLogo.png'),
+                                      width: 20,
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(' Signin With Google'),
+                                  ],
+                                )
+                              ],
+                            ),
                           ),
-                          Text(' Signin With Google')
-                        ],
-                      ),
-                    ),
                     TextButton(
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
@@ -150,5 +194,18 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  login() async {
+    // final user =
+    await _auth.loginUserWithEmailAndPassword(_email.text, _password.text);
+    // if (user != null) {
+    //   log("user logged in");
+    // Navigator.of(context).push(MaterialPageRoute(
+    //   builder: (context) {
+    //     return const HomePage();
+    // },
+    // ));
+    // }
   }
 }

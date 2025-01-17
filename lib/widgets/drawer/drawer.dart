@@ -4,6 +4,7 @@ import 'package:ecommerce_demo/screens/profile/profile.dart';
 import 'package:ecommerce_demo/screens/login/login_page.dart';
 import 'package:ecommerce_demo/screens/orders/ordersmain.dart';
 import 'package:ecommerce_demo/screens/wishlist/wishlist.dart';
+import 'package:ecommerce_demo/firebase%20Auth/authservices.dart';
 import 'package:ecommerce_demo/screens/categories/categorymain.dart';
 
 class DrawerHomepage extends StatelessWidget {
@@ -71,10 +72,11 @@ class DrawerHomepage extends StatelessWidget {
         ListTile(
           leading: const Icon(Icons.power_settings_new),
           title: const Text('Logout'),
-          onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => const LoginPage(),
-            ));
+          onTap: () async {
+            await AuthService().signout();
+
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const LoginPage()));
           },
         ),
       ],
