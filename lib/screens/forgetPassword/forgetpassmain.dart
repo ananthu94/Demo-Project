@@ -16,7 +16,7 @@ class _ForgetPassState extends State<ForgetPass> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Forgegt password'),
+        title: const Text('Forget password'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,

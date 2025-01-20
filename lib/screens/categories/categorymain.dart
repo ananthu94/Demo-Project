@@ -29,7 +29,7 @@ class CatogoryPage extends StatelessWidget {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10))),
                 ),
-                SizedBox(child: TabbarWidgetCategories()),
+                const SizedBox(child: TabbarWidgetCategories()),
               ],
             ),
           ),

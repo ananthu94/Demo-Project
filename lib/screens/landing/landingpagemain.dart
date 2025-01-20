@@ -4,6 +4,7 @@ import 'landingScreen/landing_screen2.dart';
 import 'landingScreen/landing_screen3.dart';
 import 'package:ecommerce_demo/screens/login/login_page.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:ecommerce_demo/permissionhandling/handlingpermission.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
@@ -49,6 +50,7 @@ class _LandingPageState extends State<LandingPage> {
               color: Colors.red[900],
               child: FloatingActionButton(
                 onPressed: () {
+                  requestPermissions();
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
                     builder: (context) => const LoginPage(),
                   ));

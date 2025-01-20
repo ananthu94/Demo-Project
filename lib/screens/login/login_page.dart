@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ecommerce_demo/screens/homepage/homepage.dart';
 import 'package:ecommerce_demo/screens/signup/signup_page.dart';
 import 'package:ecommerce_demo/firebase%20Auth/authservices.dart';
-import 'package:ecommerce_demo/screens/phoneAuthentication/phoneauth.dart';
+import 'package:ecommerce_demo/permissionhandling/handlingpermission.dart';
 import 'package:ecommerce_demo/screens/forgetPassword/forgetpassmain.dart';
+import 'package:ecommerce_demo/screens/phoneAuthenticationLogin/phoneauth.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -134,6 +134,7 @@ class _LoginPageState extends State<LoginPage> {
                       minWidth: double.infinity,
                       onPressed: () {
                         login();
+                        checkAndHandlePermanentDenial();
                       },
                       child: const Text(
                         'Login',
