@@ -133,8 +133,8 @@ class _LoginPageState extends State<LoginPage> {
                       color: Colors.red[900],
                       minWidth: double.infinity,
                       onPressed: () {
+                        Navigator.pop(context);
                         login();
-                        checkAndHandlePermanentDenial();
                       },
                       child: const Text(
                         'Login',
