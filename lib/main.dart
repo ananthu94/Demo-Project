@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ecommerce_demo/screens/landing/landingpagemain.dart';
 import 'package:ecommerce_demo/screens/staylogged%20in/stayloggedin.dart';
 import 'package:ecommerce_demo/statemanagement/cartProvider/cartprovider.dart';
+import 'package:ecommerce_demo/statemanagement/searchprovider/searchprovider.dart';
 import 'package:ecommerce_demo/statemanagement/WishlistProvider/wishlistprovider.dart';
 
 void main() async {
@@ -18,6 +19,7 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (context) => WishlistProvider()),
         ChangeNotifierProvider(create: (context) => CartModel()),
+        ChangeNotifierProvider(create: (context) => SearchProvider()),
       ],
       child: const MyApp(),
     ),

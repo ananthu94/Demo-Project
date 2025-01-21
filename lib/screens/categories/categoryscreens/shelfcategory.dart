@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:ecommerce_demo/statemanagement/searchprovider/searchprovider.dart';
 import 'package:ecommerce_demo/statemanagement/WishlistProvider/wishlistprovider.dart';
 import 'package:ecommerce_demo/screens/categories/categorylistmap/categorydetails.dart';
 
@@ -9,9 +10,18 @@ class ShelfCategory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final searchQuery = Provider.of<SearchProvider>(context).searchQuery;
+
+    final filteredCategories = categoryAll.where((category) {
+      return category['title'].toLowerCase().contains(searchQuery) ||
+          category['description'].toLowerCase().contains(searchQuery);
+    }).toList();
+
     return Scaffold(
       body: GridView.builder(
-        itemCount: categoryAll.length,
+        // itemCount: categoryAll.length,
+        itemCount: filteredCategories.length,
+
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           mainAxisExtent: 430,
@@ -21,7 +31,8 @@ class ShelfCategory extends StatelessWidget {
         physics: const ScrollPhysics(),
         shrinkWrap: true,
         itemBuilder: (BuildContext context, int index) {
-          final category = categoryAll[index];
+          // final category = categoryAll[index];
+          final category = filteredCategories[index];
 
           return Container(
             color: Colors.white,

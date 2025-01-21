@@ -54,7 +54,7 @@ class DrawerHomepage extends StatelessWidget {
           trailing: const Icon(Icons.chevron_right_outlined),
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => const CatogoryPage(),
+              builder: (context) => const CategoryPage(),
             ));
           },
         ),

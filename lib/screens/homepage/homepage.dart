@@ -307,8 +307,10 @@ class HomePage extends StatelessWidget {
                                 ),
                                 SizedBox(
                                   width: MediaQuery.of(context).size.width,
-                                  child:
-                                      Text(homeListmap[index]['description']),
+                                  child: Text(
+                                    homeListmap[index]['description'],
+                                    // textAlign: TextAlign.center,
+                                  ),
                                 ),
                               ],
                             ),
