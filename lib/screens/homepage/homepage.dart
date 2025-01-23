@@ -276,7 +276,10 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Text('Explore'),
+                const Text(
+                  'Explore',
+                  style: TextStyle(fontSize: 20, color: Colors.red),
+                ),
                 SizedBox(
                   height: MediaQuery.of(context).size.width,
                   child: ListView.builder(
@@ -284,53 +287,62 @@ class HomePage extends StatelessWidget {
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      return Stack(
-                        children: [
-                          Opacity(
-                            opacity: 0.6,
-                            child: Image(
-                              image:
-                                  NetworkImage(homeListmap[index]['Pimages']),
-                              fit: BoxFit.cover,
-                              height: double.infinity,
-                              width: MediaQuery.of(context).size.width * 1,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(15),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(homeListmap[index]['title']),
-                                const SizedBox(
-                                  height: 20,
+                      return Container(
+                        padding: EdgeInsets.only(right: 10),
+                        child: Stack(
+                          children: [
+                            Opacity(
+                              opacity: 0.6,
+                              child: Container(
+                                width: MediaQuery.of(context).size.width,
+                                child: Image(
+                                  image: NetworkImage(
+                                      homeListmap[index]['Pimages']),
+                                  fit: BoxFit.cover,
+                                  height: double.infinity,
+                                  width: MediaQuery.of(context).size.width * 1,
                                 ),
-                                SizedBox(
-                                  width: MediaQuery.of(context).size.width,
-                                  child: Text(
-                                    homeListmap[index]['description'],
-                                    // textAlign: TextAlign.center,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(homeListmap[index]['title']),
+                                  const SizedBox(
+                                    height: 20,
                                   ),
-                                ),
-                              ],
+                                  SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width * .9,
+                                    child: Text(
+                                      homeListmap[index]['description'],
+                                      textAlign: TextAlign.justify,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 300, top: 310),
-                            child: Container(
-                              height: 30,
-                              width: 60,
-                              color: Colors.white,
-                              child: Center(
-                                  child: Text(homeListmap[index]['price'])),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 300, top: 310),
+                              child: Container(
+                                height: 30,
+                                width: 60,
+                                color: Colors.white,
+                                child: Center(
+                                    child: Text(homeListmap[index]['price'])),
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       );
                     },
                   ),
                 ),
-                const Text('Popular Products'),
+                const Text('Popular Products',
+                    style: TextStyle(fontSize: 18, color: Colors.red)),
                 SizedBox(
                   height: 250,
                   child: ListView.builder(
@@ -358,7 +370,8 @@ class HomePage extends StatelessWidget {
                     },
                   ),
                 ),
-                const Text('More Popular Products'),
+                const Text('More Popular Products',
+                    style: TextStyle(fontSize: 18, color: Colors.red)),
                 SizedBox(
                   height: 250,
                   child: ListView.builder(
