@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:ecommerce_demo/screens/cart/cart.dart';
 import 'package:ecommerce_demo/widgets/drawer/drawer.dart';
+import 'package:ecommerce_demo/screens/profile/profile.dart';
+import 'package:ecommerce_demo/screens/wishlist/wishlist.dart';
 import 'package:ecommerce_demo/screens/homepage/listforhome.dart';
 import 'package:ecommerce_demo/screens/productpage/productpage.dart';
 
@@ -247,6 +250,26 @@ import 'package:ecommerce_demo/screens/productpage/productpage.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
+  final selectedIndex = 0;
+
+  void _onItemTapped(BuildContext context, int index) {
+    if (index == 1) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => WishlistScreen()),
+      );
+    } else if (index == 2) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => CartScreen()),
+      );
+    } else if (index == 3) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Profile()),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -276,9 +299,15 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                 ),
+                SizedBox(
+                  height: 20,
+                ),
                 const Text(
                   'Explore',
                   style: TextStyle(fontSize: 20, color: Colors.red),
+                ),
+                SizedBox(
+                  height: 10,
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.width,
@@ -294,13 +323,17 @@ class HomePage extends StatelessWidget {
                             Opacity(
                               opacity: 0.6,
                               child: Container(
-                                width: MediaQuery.of(context).size.width,
-                                child: Image(
-                                  image: NetworkImage(
-                                      homeListmap[index]['Pimages']),
-                                  fit: BoxFit.cover,
-                                  height: double.infinity,
-                                  width: MediaQuery.of(context).size.width * 1,
+                                width: MediaQuery.of(context).size.width * .95,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Image(
+                                    image: NetworkImage(
+                                        homeListmap[index]['Pimages']),
+                                    fit: BoxFit.cover,
+                                    height: double.infinity,
+                                    width:
+                                        MediaQuery.of(context).size.width * 1,
+                                  ),
                                 ),
                               ),
                             ),
@@ -309,7 +342,11 @@ class HomePage extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(homeListmap[index]['title']),
+                                  Text(
+                                    homeListmap[index]['title'],
+                                    style: TextStyle(
+                                        fontSize: 25, color: Colors.white),
+                                  ),
                                   const SizedBox(
                                     height: 20,
                                   ),
@@ -324,13 +361,15 @@ class HomePage extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 300, top: 310),
+                            Positioned(
+                              bottom: 10,
+                              right: 10,
                               child: Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(10)),
                                 height: 30,
                                 width: 60,
-                                color: Colors.white,
                                 child: Center(
                                     child: Text(homeListmap[index]['price'])),
                               ),
@@ -341,8 +380,14 @@ class HomePage extends StatelessWidget {
                     },
                   ),
                 ),
+                SizedBox(
+                  height: 10,
+                ),
                 const Text('Popular Products',
                     style: TextStyle(fontSize: 18, color: Colors.red)),
+                SizedBox(
+                  height: 5,
+                ),
                 SizedBox(
                   height: 250,
                   child: ListView.builder(
@@ -351,16 +396,19 @@ class HomePage extends StatelessWidget {
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
                       return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 5),
+                        padding: const EdgeInsets.only(right: 10),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Image(
-                              image:
-                                  NetworkImage(homeListmap[index]['Pimages']),
-                              fit: BoxFit.cover,
-                              height: 200,
-                              width: MediaQuery.of(context).size.width * .5,
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: Image(
+                                image:
+                                    NetworkImage(homeListmap[index]['Pimages']),
+                                fit: BoxFit.cover,
+                                height: 200,
+                                width: MediaQuery.of(context).size.width * .5,
+                              ),
                             ),
                             Text(homeListmap[index]['title']),
                             Text(homeListmap[index]['price']),
@@ -370,8 +418,14 @@ class HomePage extends StatelessWidget {
                     },
                   ),
                 ),
+                SizedBox(
+                  height: 10,
+                ),
                 const Text('More Popular Products',
                     style: TextStyle(fontSize: 18, color: Colors.red)),
+                SizedBox(
+                  height: 5,
+                ),
                 SizedBox(
                   height: 250,
                   child: ListView.builder(
@@ -380,16 +434,19 @@ class HomePage extends StatelessWidget {
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
                       return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 5),
+                        padding: const EdgeInsets.only(right: 10),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Image(
-                              image:
-                                  NetworkImage(homeListmap[index]['Pimages']),
-                              fit: BoxFit.cover,
-                              height: 200,
-                              width: MediaQuery.of(context).size.width * .5,
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: Image(
+                                image:
+                                    NetworkImage(homeListmap[index]['Pimages']),
+                                fit: BoxFit.cover,
+                                height: 200,
+                                width: MediaQuery.of(context).size.width * .5,
+                              ),
                             ),
                             Text(homeListmap[index]['title']),
                             Text(homeListmap[index]['price']),
@@ -407,6 +464,31 @@ class HomePage extends StatelessWidget {
       drawer: const Drawer(
         backgroundColor: Colors.white,
         child: DrawerHomepage(),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: selectedIndex,
+        backgroundColor: Colors.red[900],
+        unselectedItemColor: Colors.black,
+        selectedItemColor: Colors.redAccent,
+        onTap: (index) => _onItemTapped(context, index), // Handle tap events
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+            label: 'Favorites',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart),
+            label: 'Cart',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ),
+        ],
       ),
     );
   }

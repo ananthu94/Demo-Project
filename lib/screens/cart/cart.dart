@@ -1,10 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ecommerce_demo/screens/profile/profile.dart';
 import '../../statemanagement/cartProvider/cartprovider.dart';
+import 'package:ecommerce_demo/screens/wishlist/wishlist.dart';
+import 'package:ecommerce_demo/screens/homepage/homepage.dart';
 import 'package:ecommerce_demo/screens/orders/ordersscreens/orderfinalpage.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
+
+  final selectedIndex = 2;
+
+  void _onItemTapped(BuildContext context, int index) {
+    if (index == 0) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HomePage()),
+      );
+    } else if (index == 1) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => WishlistScreen()),
+      );
+    } else if (index == 3) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Profile()),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -130,6 +154,31 @@ class CartScreen extends StatelessWidget {
                 );
               },
             ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: selectedIndex,
+        backgroundColor: Colors.red[900],
+        unselectedItemColor: Colors.black,
+        selectedItemColor: Colors.redAccent,
+        onTap: (index) => _onItemTapped(context, index), // Handle tap events
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+            label: 'Favorites',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart),
+            label: 'Cart',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ),
+        ],
+      ),
     );
   }
 }

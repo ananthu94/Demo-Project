@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ecommerce_demo/screens/cart/cart.dart';
+import 'package:ecommerce_demo/screens/profile/profile.dart';
+import 'package:ecommerce_demo/screens/homepage/homepage.dart';
 import 'package:ecommerce_demo/models/productmodel/productmodel.dart';
 import 'package:ecommerce_demo/statemanagement/cartProvider/cartprovider.dart';
 import 'package:ecommerce_demo/statemanagement/WishlistProvider/wishlistprovider.dart';
@@ -7,6 +10,27 @@ import 'package:ecommerce_demo/screens/categories/categorylistmap/categorydetail
 
 class WishlistScreen extends StatelessWidget {
   const WishlistScreen({super.key});
+
+  final selectedIndex = 1;
+
+  void _onItemTapped(BuildContext context, int index) {
+    if (index == 0) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HomePage()),
+      );
+    } else if (index == 2) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => CartScreen()),
+      );
+    } else if (index == 3) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Profile()),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -129,6 +153,31 @@ class WishlistScreen extends StatelessWidget {
             ),
           );
         },
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: selectedIndex,
+        backgroundColor: Colors.red[900],
+        unselectedItemColor: Colors.black,
+        selectedItemColor: Colors.redAccent,
+        onTap: (index) => _onItemTapped(context, index), // Handle tap events
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+            label: 'Favorites',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart),
+            label: 'Cart',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ),
+        ],
       ),
     );
   }
