@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ecommerce_demo/screens/payment/payment.dart';
 import 'package:ecommerce_demo/statemanagement/cartProvider/cartprovider.dart';
 
 class OrderFinalPage extends StatelessWidget {
@@ -142,7 +143,9 @@ class OrderFinalPage extends StatelessWidget {
                   const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) => paymentpage(),
+                      ));
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.green,
