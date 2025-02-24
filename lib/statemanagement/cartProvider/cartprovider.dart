@@ -1,4 +1,6 @@
 import 'package:flutter/foundation.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce_demo/models/productmodel/productmodel.dart';
 
 // import 'package:flutter/material.dart';
@@ -32,7 +34,28 @@ import 'package:ecommerce_demo/models/productmodel/productmodel.dart';
 //   }
 // }
 
-class CartModel extends ChangeNotifier {
+class CartProvider extends ChangeNotifier {
+  void addCartData({
+    String? cartId,
+    String? cartName,
+    String? cartImages,
+    String? cartPrice,
+    int? cartQuantity,
+  }) async {
+    await FirebaseFirestore.instance
+        .collection('Cart')
+        .doc(FirebaseAuth.instance.currentUser?.uid)
+        .collection('YourCart')
+        .doc(cartId)
+        .set({
+      'cartId': cartId,
+      'cartName': cartName,
+      'cartImages': cartImages,
+      'cartPrice': cartPrice,
+      'cartQuantity': cartQuantity,
+    });
+  }
+
   final Map<Product, int> _cartItems = {};
 
   // Get the list of items in the cart

@@ -1,15 +1,15 @@
 class Cart {
-  final String title;
-  final String description;
-  final String price;
-  final String color;
-  final String imageUrl;
+  String cartId;
+  String cartTitle;
+  String cartImages;
+  String cartPrice;
+  int cartQuantity;
 
   Cart({
-    required this.title,
-    required this.description,
-    required this.price,
-    required this.color,
-    required this.imageUrl,
+    required this.cartId,
+    required this.cartTitle,
+    required this.cartImages,
+    required this.cartPrice,
+    required this.cartQuantity,
   });
 }

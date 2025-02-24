@@ -8,7 +8,7 @@ class OrderFinalPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var cart = Provider.of<CartModel>(context);
+    var cart = Provider.of<CartProvider>(context);
     double taxRate = 0.1;
     double taxAmount = cart.totalPrice * taxRate;
     double totalPrice = cart.totalPrice + taxAmount;
@@ -144,7 +144,8 @@ class OrderFinalPage extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) => paymentpage(),
+                        builder: (context) =>
+                            paymentpage(totalPrice: totalPrice),
                       ));
                     },
                     style: ElevatedButton.styleFrom(

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ecommerce_demo/screens/cart/cart.dart';
 import 'package:ecommerce_demo/screens/login/login_page.dart';
-import 'package:ecommerce_demo/screens/homepage/homepage.dart';
 import 'package:ecommerce_demo/screens/orders/ordersmain.dart';
 import 'package:ecommerce_demo/screens/wishlist/wishlist.dart';
 import 'package:ecommerce_demo/screens/profile/editprofile.dart';
@@ -11,25 +9,6 @@ class Profile extends StatelessWidget {
   const Profile({super.key});
 
   final selectedIndex = 3;
-
-  void _onItemTapped(BuildContext context, int index) {
-    if (index == 0) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => HomePage()),
-      );
-    } else if (index == 1) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => WishlistScreen()),
-      );
-    } else if (index == 2) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => CartScreen()),
-      );
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -182,31 +161,6 @@ class Profile extends StatelessWidget {
             ])
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: selectedIndex,
-        onTap: (index) => _onItemTapped(context, index),
-        backgroundColor: Colors.red[900],
-        unselectedItemColor: Colors.black,
-        selectedItemColor: Colors.redAccent,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: 'Favorites',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: 'Cart',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
       ),
     );
   }

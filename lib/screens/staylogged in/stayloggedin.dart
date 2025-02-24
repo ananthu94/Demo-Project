@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ecommerce_demo/screens/login/login_page.dart';
-import 'package:ecommerce_demo/screens/homepage/homepage.dart';
+import 'package:ecommerce_demo/screens/mainscreen/mainscreen.dart';
 
 class StayLoggedIn extends StatelessWidget {
   const StayLoggedIn({super.key});
@@ -22,7 +22,7 @@ class StayLoggedIn extends StatelessWidget {
             if (snapshot.data == null) {
               return const LoginPage();
             } else {
-              return const HomePage();
+              return MainScreen();
             }
           }
         },
