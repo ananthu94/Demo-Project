@@ -238,48 +238,49 @@ class HomePage extends StatelessWidget {
         ],
       ),
       body: SingleChildScrollView(
-        child: InkWell(
-          onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => const ProductPage(),
-            ));
-          },
-          child: Container(
-            padding: const EdgeInsets.all(10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TextField(
-                  controller: searchController,
-                  onChanged: (query) {
-                    _filterProducts(query);
-                  },
-                  decoration: InputDecoration(
-                    suffixIcon: const Icon(Icons.search),
-                    labelText: 'Search',
-                    hintText: 'Search',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
+        child: Container(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TextField(
+                controller: searchController,
+                onChanged: (query) {
+                  _filterProducts(query);
+                },
+                decoration: InputDecoration(
+                  suffixIcon: const Icon(Icons.search),
+                  labelText: 'Search',
+                  hintText: 'Search',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                const SizedBox(height: 20),
-                const Text(
-                  'Explore',
-                  style: TextStyle(fontSize: 20, color: Colors.red),
-                ),
-                const SizedBox(height: 10),
-                SizedBox(
-                  height: MediaQuery.of(context).size.width,
-                  child: ValueListenableBuilder<List<Map<String, dynamic>>>(
-                    valueListenable: filteredProducts,
-                    builder: (context, filteredList, _) {
-                      return ListView.builder(
-                        itemCount: filteredList.length,
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) {
-                          return Container(
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                'Explore',
+                style: TextStyle(fontSize: 20, color: Colors.red),
+              ),
+              const SizedBox(height: 10),
+              SizedBox(
+                height: MediaQuery.of(context).size.width,
+                child: ValueListenableBuilder<List<Map<String, dynamic>>>(
+                  valueListenable: filteredProducts,
+                  builder: (context, filteredList, _) {
+                    return ListView.builder(
+                      itemCount: filteredList.length,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => ProductPage(
+                                      product: homeListmap[index],
+                                    )));
+                          },
+                          child: Container(
                             padding: EdgeInsets.only(right: 10),
                             child: Stack(
                               children: [
@@ -343,38 +344,38 @@ class HomePage extends StatelessWidget {
                                 ),
                               ],
                             ),
-                          );
-                        },
-                      );
-                    },
-                  ),
-                ),
-                const SizedBox(height: 10),
-                const Text(
-                  'Popular Products',
-                  style: TextStyle(fontSize: 18, color: Colors.red),
-                ),
-                const SizedBox(height: 5),
-                ValueListenableBuilder<List<Map<String, dynamic>>>(
-                  valueListenable: filteredProducts,
-                  builder: (context, filteredList, _) {
-                    return buildPopularProducts(filteredList);
+                          ),
+                        );
+                      },
+                    );
                   },
                 ),
-                const SizedBox(height: 10),
-                const Text(
-                  'More Popular Products',
-                  style: TextStyle(fontSize: 18, color: Colors.red),
-                ),
-                const SizedBox(height: 5),
-                ValueListenableBuilder<List<Map<String, dynamic>>>(
-                  valueListenable: filteredProducts,
-                  builder: (context, filteredList, _) {
-                    return buildPopularProducts(filteredList);
-                  },
-                ),
-              ],
-            ),
+              ),
+              const SizedBox(height: 10),
+              const Text(
+                'Popular Products',
+                style: TextStyle(fontSize: 18, color: Colors.red),
+              ),
+              const SizedBox(height: 5),
+              ValueListenableBuilder<List<Map<String, dynamic>>>(
+                valueListenable: filteredProducts,
+                builder: (context, filteredList, _) {
+                  return buildPopularProducts(filteredList);
+                },
+              ),
+              const SizedBox(height: 10),
+              const Text(
+                'More Popular Products',
+                style: TextStyle(fontSize: 18, color: Colors.red),
+              ),
+              const SizedBox(height: 5),
+              ValueListenableBuilder<List<Map<String, dynamic>>>(
+                valueListenable: filteredProducts,
+                builder: (context, filteredList, _) {
+                  return buildPopularProducts(filteredList);
+                },
+              ),
+            ],
           ),
         ),
       ),
@@ -394,23 +395,31 @@ Widget buildPopularProducts(List<Map<String, dynamic>> products) {
       itemCount: products.length,
       shrinkWrap: true,
       itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.only(right: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Image(
-                  image: NetworkImage(products[index]['Pimages']),
-                  fit: BoxFit.cover,
-                  height: 200,
-                  width: MediaQuery.of(context).size.width * .5,
+        return InkWell(
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => ProductPage(
+                      product: homeListmap[index],
+                    )));
+          },
+          child: Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image(
+                    image: NetworkImage(products[index]['Pimages']),
+                    fit: BoxFit.cover,
+                    height: 200,
+                    width: MediaQuery.of(context).size.width * .5,
+                  ),
                 ),
-              ),
-              Text(products[index]['title']),
-              Text(products[index]['price']),
-            ],
+                Text(products[index]['title']),
+                Text(products[index]['price']),
+              ],
+            ),
           ),
         );
       },

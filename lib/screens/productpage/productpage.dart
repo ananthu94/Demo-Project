@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:ecommerce_demo/models/productmodel/productmodel.dart';
 
 class ProductPage extends StatefulWidget {
-  const ProductPage({super.key});
+  final Map<String, dynamic> product;
+
+  ProductPage({required this.product});
 
   @override
   State<ProductPage> createState() => _ProductPageState();
@@ -45,21 +48,18 @@ class _ProductPageState extends State<ProductPage> {
                             isLastPage = index == 2;
                           });
                         },
-                        children: const [
+                        children: [
                           Image(
-                            image:
-                                AssetImage('assets/images/landingScreen2.jpg'),
-                            fit: BoxFit.cover,
+                            image: NetworkImage(widget.product['Pimages']),
+                            fit: BoxFit.fill,
                           ),
                           Image(
-                            image:
-                                AssetImage('assets/images/landingScreen2.jpg'),
-                            fit: BoxFit.cover,
+                            image: NetworkImage(widget.product['Pimages']),
+                            fit: BoxFit.fill,
                           ),
                           Image(
-                            image:
-                                AssetImage('assets/images/landingScreen2.jpg'),
-                            fit: BoxFit.cover,
+                            image: NetworkImage(widget.product['Pimages']),
+                            fit: BoxFit.fill,
                           ),
                         ],
                       ),
@@ -86,10 +86,9 @@ class _ProductPageState extends State<ProductPage> {
                       },
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height * .47,
-                        left: MediaQuery.of(context).size.width * .75),
+                  Positioned(
+                    bottom: 20,
+                    right: 20,
                     child: Container(
                       height: 50,
                       width: 50,
@@ -103,16 +102,15 @@ class _ProductPageState extends State<ProductPage> {
                   )
                 ],
               ),
-              const Text('Chair'),
+              Text(widget.product['title']),
               Container(
                   padding: EdgeInsets.only(
                       left: MediaQuery.of(context).size.width * .7),
-                  child: const Text('\u0024 10.99')),
+                  child: Text(widget.product['price'])),
               const SizedBox(
                 height: 10,
               ),
-              const Text(
-                  'An office chair, or desk chair, is a type of chair that is designed for use at a desk in an office. It is usually a swivel chair, with a set of wheels for mobility and adjustable height. Modern office chairs typically use a single, distinctive load bearing leg (often called a gas lift), which is positioned underneath the chair seat. Near the floor this leg spreads out into several smaller feet, which are often wheeled and called casters. Office chairs were developed around the mid-19th century as more workers spent their shifts sitting at a desk, leading to the adoption of several features not found on other chairs.'),
+              Text(widget.product['description']),
               const SizedBox(
                 height: 20,
               ),
