@@ -184,7 +184,7 @@ class _LoginPageState extends State<LoginPage> {
                               style: const TextStyle(color: Colors.black),
                               children: [
                                 TextSpan(
-                                    text: 'SignUp',
+                                    text: 'SignIn',
                                     style: TextStyle(color: Colors.red[900]))
                               ]))),
                     ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ecommerce_demo/screens/login/login_page.dart';
 import 'package:ecommerce_demo/screens/homepage/homepage.dart';
 import 'package:ecommerce_demo/firebase%20Auth/authservices.dart';
@@ -119,6 +120,7 @@ class _SignupPageState extends State<SignupPage> {
                         if (value == null || value.isEmpty) {
                           return 'Password is required';
                         }
+
                         if (value.length < 6) {
                           return 'Password should be at least 6 characters';
                         }
@@ -205,33 +207,38 @@ class _SignupPageState extends State<SignupPage> {
   }
 
   _signup() async {
-    // if (formkey.currentState?.validate() ?? false) {
-    // try {
-    //   final user =
-    await _auth.createUserWithEmailAndPassword(_email.text, _password.text);
-    Navigator.pop;
-    //     if (user != null) {
-    //       log('User Created Successfully');
-    //       gotoHome();
-    //     }
-    //   } on FirebaseAuthException catch (e) {
-    //     // Check for specific error codes from FirebaseAuthException
-    //     if (e.code == 'email-already-in-use') {
-    //       log('Email is already in use');
-    //       ScaffoldMessenger.of(context)
-    //           .showSnackBar(SnackBar(content: Text('already used email')));
-    //       ScaffoldMessenger.of(context).showSnackBar(
-    //         SnackBar(
-    //             content: Text(
-    //                 'The email is already in use. Please use a different email.')),
-    //       );
-    //     } else {
-    //       log('Error: $e');
-    //       ScaffoldMessenger.of(context).showSnackBar(
-    //         SnackBar(content: Text('Error: $e')),
-    //       );
-    //     }
-    //   }
-    // }
+    if (formkey.currentState?.validate() ?? false) {
+      try {
+        final user = await _auth.createUserWithEmailAndPassword(
+            _email.text, _password.text);
+
+        if (user != null) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Sign In Successful!')),
+          );
+
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => const LoginPage()),
+          );
+        }
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'email-already-in-use') {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+                content: Text(
+                    'This email is already in use. Please use a different email.')),
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Error: ${e.message}')),
+          );
+        }
+      }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please fill all fields correctly.')),
+      );
+    }
   }
 }
