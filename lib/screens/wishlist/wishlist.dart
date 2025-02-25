@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ecommerce_demo/screens/cart/cart.dart';
+import 'package:ecommerce_demo/screens/homepage/listforhome.dart';
 import 'package:ecommerce_demo/models/productmodel/productmodel.dart';
 import 'package:ecommerce_demo/statemanagement/cartProvider/cartprovider.dart';
 import 'package:ecommerce_demo/statemanagement/WishlistProvider/wishlistprovider.dart';
-import 'package:ecommerce_demo/screens/categories/categorylistmap/categorydetails.dart';
 
 class WishlistScreen extends StatelessWidget {
   const WishlistScreen({super.key});
@@ -49,7 +49,7 @@ class WishlistScreen extends StatelessWidget {
             child: ListView.builder(
               itemCount: wishlist.length,
               itemBuilder: (context, index) {
-                var productData = categoryAll[index];
+                var productData = homeListmap[index];
                 var product = Product(
                   title: productData['title'],
                   description: productData['description'],

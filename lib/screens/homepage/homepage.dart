@@ -265,7 +265,7 @@ class HomePage extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               SizedBox(
-                height: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.width * .7,
                 child: ValueListenableBuilder<List<Map<String, dynamic>>>(
                   valueListenable: filteredProducts,
                   builder: (context, filteredList, _) {
@@ -313,7 +313,8 @@ class HomePage extends StatelessWidget {
                                       Text(
                                         filteredList[index]['title'],
                                         style: TextStyle(
-                                            fontSize: 25, color: Colors.white),
+                                            fontSize: 25,
+                                            color: Colors.blueGrey),
                                       ),
                                       const SizedBox(height: 20),
                                       SizedBox(
@@ -368,7 +369,7 @@ class HomePage extends StatelessWidget {
               ValueListenableBuilder<List<Map<String, dynamic>>>(
                 valueListenable: filteredProducts,
                 builder: (context, filteredList, _) {
-                  return buildPopularProducts(filteredList);
+                  return buildPopularProducts(filteredList, context);
                 },
               ),
               const SizedBox(height: 10),
@@ -384,7 +385,7 @@ class HomePage extends StatelessWidget {
               ValueListenableBuilder<List<Map<String, dynamic>>>(
                 valueListenable: filteredProducts,
                 builder: (context, filteredList, _) {
-                  return buildPopularProducts(filteredList);
+                  return buildPopularProducts(filteredList, context);
                 },
               ),
             ],
@@ -399,9 +400,10 @@ class HomePage extends StatelessWidget {
   }
 }
 
-Widget buildPopularProducts(List<Map<String, dynamic>> products) {
+Widget buildPopularProducts(
+    List<Map<String, dynamic>> products, BuildContext context) {
   return SizedBox(
-    height: 250,
+    height: MediaQuery.of(context).size.height * .32,
     child: ListView.builder(
       scrollDirection: Axis.horizontal,
       itemCount: products.length,
