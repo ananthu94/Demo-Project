@@ -239,6 +239,7 @@ class HomePage extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Container(
+          // color: Colors.redAccent,
           padding: const EdgeInsets.all(10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -351,10 +352,17 @@ class HomePage extends StatelessWidget {
                   },
                 ),
               ),
+              SizedBox(
+                height: 10,
+              ),
+              Divider(),
               const SizedBox(height: 10),
               const Text(
                 'Popular Products',
-                style: TextStyle(fontSize: 18, color: Colors.red),
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.red,
+                ),
               ),
               const SizedBox(height: 5),
               ValueListenableBuilder<List<Map<String, dynamic>>>(
@@ -364,9 +372,13 @@ class HomePage extends StatelessWidget {
                 },
               ),
               const SizedBox(height: 10),
+              Divider(),
               const Text(
                 'More Popular Products',
-                style: TextStyle(fontSize: 18, color: Colors.red),
+                style: TextStyle(
+                  color: Colors.red,
+                  fontSize: 18,
+                ),
               ),
               const SizedBox(height: 5),
               ValueListenableBuilder<List<Map<String, dynamic>>>(
@@ -416,8 +428,14 @@ Widget buildPopularProducts(List<Map<String, dynamic>> products) {
                     width: MediaQuery.of(context).size.width * .5,
                   ),
                 ),
-                Text(products[index]['title']),
-                Text(products[index]['price']),
+                Text(
+                  products[index]['title'],
+                  style: TextStyle(fontSize: 20, color: Colors.blue),
+                ),
+                Text(
+                  products[index]['price'],
+                  style: TextStyle(color: Colors.blue),
+                ),
               ],
             ),
           ),

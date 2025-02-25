@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:ecommerce_demo/screens/homepage/listforhome.dart';
 import 'package:ecommerce_demo/statemanagement/searchprovider/searchprovider.dart';
 import 'package:ecommerce_demo/statemanagement/WishlistProvider/wishlistprovider.dart';
-import 'package:ecommerce_demo/screens/categories/categorylistmap/categorydetails.dart';
 
 class VaseCategory extends StatelessWidget {
   const VaseCategory({super.key});
@@ -12,7 +12,7 @@ class VaseCategory extends StatelessWidget {
   Widget build(BuildContext context) {
     final searchQuery = Provider.of<SearchProvider>(context).searchQuery;
 
-    final filteredCategories = categoryAll.where((category) {
+    final filteredCategories = homeListmap.where((category) {
       return category['title'].toLowerCase().contains(searchQuery) ||
           category['description'].toLowerCase().contains(searchQuery);
     }).toList();

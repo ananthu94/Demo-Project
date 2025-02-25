@@ -12,4 +12,14 @@ class Product {
     required this.color,
     required this.imageUrl,
   });
+
+  factory Product.fromMap(Map<String, dynamic> map) {
+    return Product(
+      color: map['color'] ?? '',
+      title: map['title'] ?? '',
+      price: map['price'] ?? '',
+      description: map['description'] ?? '',
+      imageUrl: map['Pimages'] ?? '',
+    );
+  }
 }

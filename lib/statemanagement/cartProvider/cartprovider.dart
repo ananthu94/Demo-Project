@@ -1,6 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce_demo/models/productmodel/productmodel.dart';
 
 // import 'package:flutter/material.dart';
@@ -35,33 +33,31 @@ import 'package:ecommerce_demo/models/productmodel/productmodel.dart';
 // }
 
 class CartProvider extends ChangeNotifier {
-  void addCartData({
-    String? cartId,
-    String? cartName,
-    String? cartImages,
-    String? cartPrice,
-    int? cartQuantity,
-  }) async {
-    await FirebaseFirestore.instance
-        .collection('Cart')
-        .doc(FirebaseAuth.instance.currentUser?.uid)
-        .collection('YourCart')
-        .doc(cartId)
-        .set({
-      'cartId': cartId,
-      'cartName': cartName,
-      'cartImages': cartImages,
-      'cartPrice': cartPrice,
-      'cartQuantity': cartQuantity,
-    });
-  }
+  // void addCartData({
+  //   String? cartId,
+  //   String? cartName,
+  //   String? cartImages,
+  //   String? cartPrice,
+  //   int? cartQuantity,
+  // }) async {
+  //   await FirebaseFirestore.instance
+  //       .collection('Cart')
+  //       .doc(FirebaseAuth.instance.currentUser?.uid)
+  //       .collection('YourCart')
+  //       .doc(cartId)
+  //       .set({
+  //     'cartId': cartId,
+  //     'cartName': cartName,
+  //     'cartImages': cartImages,
+  //     'cartPrice': cartPrice,
+  //     'cartQuantity': cartQuantity,
+  //   });
+  // }
 
   final Map<Product, int> _cartItems = {};
 
-  // Get the list of items in the cart
   List<MapEntry<Product, int>> get cartItems => _cartItems.entries.toList();
 
-  // Add a product to the cart
   void addToCart(Product product) {
     if (_cartItems.containsKey(product)) {
       _cartItems[product] = _cartItems[product]! + 1;
@@ -71,7 +67,6 @@ class CartProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // Remove a product from the cart
   void removeFromCart(Product product) {
     if (_cartItems.containsKey(product)) {
       if (_cartItems[product]! > 1) {
@@ -83,16 +78,13 @@ class CartProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // Clear all items in the cart
   void clearCart() {
     _cartItems.clear();
     notifyListeners();
   }
 
-  // Get total items in the cart
   int get totalItems => _cartItems.values.fold(0, (sum, qty) => sum + qty);
 
-  // Calculate the total price of the cart
   double get totalPrice => _cartItems.entries.fold(0, (sum, entry) {
         return sum + double.parse(entry.key.price.substring(1)) * entry.value;
       });

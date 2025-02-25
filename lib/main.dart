@@ -7,6 +7,7 @@ import 'package:ecommerce_demo/screens/staylogged%20in/stayloggedin.dart';
 import 'package:ecommerce_demo/statemanagement/cartProvider/cartprovider.dart';
 import 'package:ecommerce_demo/statemanagement/searchprovider/searchprovider.dart';
 import 'package:ecommerce_demo/statemanagement/WishlistProvider/wishlistprovider.dart';
+
 // import 'package:firebase_messaging/firebase_messaging.dart';
 
 void main() async {
