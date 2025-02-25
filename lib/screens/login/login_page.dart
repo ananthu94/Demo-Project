@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ecommerce_demo/screens/homepage/homepage.dart';
 import 'package:ecommerce_demo/screens/signup/signup_page.dart';
 import 'package:ecommerce_demo/firebase%20Auth/authservices.dart';
 import 'package:ecommerce_demo/screens/forgetPassword/forgetpassmain.dart';
@@ -198,15 +199,35 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   login() async {
-    // final user =
-    await _auth.loginUserWithEmailAndPassword(_email.text, _password.text);
-    // if (user != null) {
-    //   log("user logged in");
-    // Navigator.of(context).push(MaterialPageRoute(
-    //   builder: (context) {
-    //     return const HomePage();
-    // },
-    // ));
-    // }
+    setState(() {
+      isLoading = true;
+    });
+
+    try {
+      final user = await _auth.loginUserWithEmailAndPassword(
+        _email.text,
+        _password.text,
+      );
+
+      if (user != null) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => const HomePage(),
+          ),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Login failed. Please try again.')),
+        );
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error: $e')),
+      );
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
   }
 }
