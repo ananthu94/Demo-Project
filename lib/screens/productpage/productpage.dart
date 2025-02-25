@@ -4,7 +4,6 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:ecommerce_demo/models/productmodel/productmodel.dart';
 import 'package:ecommerce_demo/statemanagement/cartProvider/cartprovider.dart';
 import 'package:ecommerce_demo/statemanagement/WishlistProvider/wishlistprovider.dart';
-import 'package:ecommerce_demo/screens/categories/categorylistmap/categorydetails.dart';
 
 class ProductPage extends StatefulWidget {
   final Map<String, dynamic> product;
